@@ -39,3 +39,15 @@ chmod 2770 workspace
 
 2. コンテナ内のumaskを0002にする。
 
+``` bash
+# 何らかの方法で作成する. ここではbase imageにあるentrypoint.shの中身をコピーしてbuild context上にファイルとして作成.
+# vi entorypoint.sh
+# 実行権限を付けておく
+chmod +x entrypoint.sh
+```
+
+これはentrypoint.shを作成して、その中でumask 0002とする。
+remote-containersではwslコマンドからdocker 'run'など実行しているので、docker run時にコンテナ内でumaskを有効化するには、
+entrypoint.shの中でumaskしておく必要がある。
+remote-containers: show log で docker 'run' を検索すると実行箇所が分かる。
+
