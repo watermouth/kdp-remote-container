@@ -13,7 +13,9 @@
 	},
 
 	// Add the IDs of extensions you want installed when the container is created.
-	"extensions": [],
+	"extensions": [
+		"Python"
+	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [8080],
@@ -38,7 +40,25 @@
 
 	// Uncomment to use the Docker CLI from inside the container. See https://aka.ms/vscode-remote/samples/docker-from-docker.
 	// "mounts": [ "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind" ],
+	// local user のhome directory を remote userの home directory にマウントしておく. 
+	// これは設定ファイルを共有するのが目的である. 作業ディレクトリはworkspaceMountで指定することにする.
+	// workspaceFolderとworkspaceMountは明示的に指定すべきであるため.
 
+	// containerEnvは container 起動後のコンテナ内の環境変数のはずなので、mountsでは使えない。
+	// "containerEnv": {
+	// 	"HOME": "/home/vscode1"
+	// },
+	"mounts" : [
+		"source=${localEnv:HOME}/.inputrc,target=/home/vscode1/.inputrc,type=bind",
+		"source=${localEnv:HOME}/.profile,target=/home/vscode1/.profile,type=bind",
+		"source=${localEnv:HOME}/.bashrc,target=/home/vscode1/.bashrc,type=bind",
+		"source=${localEnv:HOME}/.bash_history,target=/home/vscode1/.bash_history,type=bind",
+		"source=${localEnv:HOME}/.ssh,target=/home/vscode1/.ssh,type=bind",
+		"source=${localEnv:HOME}/.vimrc,target=/home/vscode1/.vimrc,type=bind",
+		"source=${localEnv:HOME}/.vim,target=/home/vscode1/.vim,type=bind",
+		"source=${localEnv:HOME}/.gitconfig,target=/home/vscode1/.gitconfig,type=bind",
+		"source=${localEnv:HOME}/.kaggle,target=/home/vscode1/.kaggle,type=bind",
+	],
 	// Uncomment to connect as a non-root user if you've added one. See https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "vscode1",
 }
