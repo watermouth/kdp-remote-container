@@ -26,7 +26,8 @@
 	// デフォルトではsource=${localWorkspaceFolder},target=/workspaces/${localWorkspaceFolderBasename}となっている。
 	// ここではデフォルトのENTRYPOINT, CMD で実行されるjupygter labのroot directoryが /home となっているので、
 	// /homeより下のディレクトリにtargetを作成・設定する。
-	"workspaceMount": "source=${localWorkspaceFolder}/workspace,target=/home/vscode1/workspace,type=bind,consistency=cached",
+	// さらに他のコンテナと共有することも考えて、ローカルの作業ディレクトリを../workspaceにする。
+	"workspaceMount": "source=${localWorkspaceFolder}/../workspace,target=/home/vscode1/workspace,type=bind,consistency=cached",
 	// 設定しないと、/workspaces/${localWorkspaceFolderBasename} を vscode接続時のディレクトリにしようとして、存在しないのでエラー終了する。
 	// 基本的にworkspaceMountのtargetを設定しておくのが便利なはずである。
 	"workspaceFolder": "/home/vscode1/workspace",
