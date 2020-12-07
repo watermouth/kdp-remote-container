@@ -1,4 +1,4 @@
-FROM gcr.io/kaggle-images/python:v86
+FROM gcr.io/kaggle-images/python:v92
 
 # ライブラリの追加インストール
 RUN pip install -U pip && \

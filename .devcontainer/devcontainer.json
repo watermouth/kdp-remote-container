@@ -51,7 +51,7 @@
 	// 	"HOME": "/home/vscode1"
 	// },
 	"mounts" : [
-		"source=/etc/localtime,target=/etc/localtime,type=bind,readonly", # date synclonization
+		"source=/etc/localtime,target=/etc/localtime,type=bind,readonly", // date synclonization
 		"source=${localEnv:HOME}/.inputrc,target=/home/vscode1/.inputrc,type=bind",
 		"source=${localEnv:HOME}/.profile,target=/home/vscode1/.profile,type=bind",
 		"source=${localEnv:HOME}/.bashrc,target=/home/vscode1/.bashrc,type=bind",
